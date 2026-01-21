@@ -1,72 +1,77 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seewald Werkzeug-Handel</title>
+    <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Seewald Werkzeug-Handel</title>
     <style>
-        :root { --primary: #e44d26; --dark: #2c3e50; --light: #f4f4f4; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.4; margin: 0; color: #333; background: #f0f2f5; }
+        :root { --primary: #e44d26; --dark: #2c3e50; --light: #f4f4f4; } /* Definiert deine Firmenfarben als Variablen */
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.4; margin: 0; color: #333; background: #f0f2f5; } /* Grundschrift und Hintergrund */
         
-        /* Logo & Header Anpassung */
-header { 
-    background: var(--dark); 
-    color: white; 
-    padding: 1.5rem; 
-    display: flex;             /* Aktiviert Flexbox */
-    justify-content: center;   /* Zentriert den Text (H1) */
-    align-items: center;       /* Richtet alles vertikal mittig aus */
-    position: relative;        /* Ermöglicht die Positionierung des Logos */
-    min-height: 100px;
-}
+        /* Logo & Header */
+        header { 
+            background: var(--dark); /* Dunkelblauer Hintergrund */
+            color: white; 
+            padding: 2rem 1.5rem; 
+            text-align: center; 
+            position: relative; /* Ermöglicht die freie Positionierung des Logos */
+            min-height: 120px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-.logo-container { 
-    position: absolute;        /* Fixiert das Logo unabhängig vom Text */
-    right: 40px;               /* Abstand vom rechten Rand */
-    top: 60%;                  /* Vertikale Mitte */
-    transform: translateY(-50%); /* Perfekte Zentrierung nach oben/unten */
-}
+        header h1 { 
+            margin: 0; 
+            font-size: 2.2rem; 
+            text-transform: uppercase; /* Firmenname in Großbuchstaben */
+            letter-spacing: 1px;
+        }
 
-.logo-container img { 
-    max-height: 120px;         /* Vorher 80px -> Jetzt 120px für mehr Größe */
-    width: auto; 
-    display: block;
-}
+        header p { 
+            margin: 10px 0 0 0; 
+            font-size: 1.4rem; /* Größerer Untertitel */
+            color: var(--primary); /* Orange Farbe für den Fokus */
+            font-weight: bold; /* Fett gedruckt */
+            border-top: 2px solid var(--primary); /* Trennlinie über dem Text */
+            display: inline-block;
+            padding-top: 5px;
+        }
 
-/* Für Mobilgeräte: Logo wieder über den Text setzen, damit es nicht überlappt */
-@media (max-width: 700px) {
-    header { 
-        flex-direction: column; 
-        position: static; 
-    }
-    .logo-container { 
-        position: static; 
-        transform: none; 
-        margin-bottom: 15px;
-    }
-}
+        .logo-container { 
+            position: absolute; /* Löst das Logo aus dem Textfluss */
+            right: 40px; /* Positioniert es ganz rechts mit Abstand */
+            top: 50%; 
+            transform: translateY(-50%); /* Zentriert es vertikal im Balken */
+        }
+
+        .logo-container img { 
+            max-height: 110px; /* Größeres Logo als vorher (vorher 80px) */
+            width: auto; 
+        }
         
-        .container { max-width: 1100px; margin: 2rem auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 400px; gap: 20px; }
-        @media (max-width: 900px) { .container { grid-template-columns: 1fr; } }
-        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .price-tag { font-size: 1.5rem; color: var(--primary); font-weight: bold; }
-        input, select, button { width: 100%; padding: 10px; margin: 5px 0 10px 0; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box; }
-        button { background: var(--primary); color: white; border: none; font-weight: bold; cursor: pointer; }
-        button:disabled { background: #ccc; cursor: not-allowed; }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding: 5px 0; font-size: 0.85rem; }
-        .remove-btn { color: red; cursor: pointer; font-weight: bold; width: auto; background: none; border: none; padding: 0 5px; }
-        .form-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        footer { background: #ddd; padding: 40px 20px; margin-top: 50px; font-size: 0.85rem; }
+        /* Layout & Karten */
+        .container { max-width: 1100px; margin: 2rem auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 400px; gap: 20px; } /* Zwei Spalten: Produkte und Warenkorb */
+        @media (max-width: 900px) { /* Anpassung für schmale Bildschirme */
+            .container { grid-template-columns: 1fr; } 
+            .logo-container { position: static; transform: none; margin-bottom: 20px; } /* Logo rutscht am Handy wieder über den Text */
+            header { padding-top: 20px; }
+        }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px; } /* Weiße Boxen */
+        .price-tag { font-size: 1.5rem; color: var(--primary); font-weight: bold; } /* Preis-Stil */
+        input, select, button { width: 100%; padding: 10px; margin: 5px 0 10px 0; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box; } /* Formularelemente */
+        button { background: var(--primary); color: white; border: none; font-weight: bold; cursor: pointer; } /* Orange Buttons */
+        button:disabled { background: #ccc; cursor: not-allowed; } /* Grauer Button wenn Adresse fehlt */
+        .cart-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding: 5px 0; font-size: 0.85rem; } /* Artikelzeile im Korb */
+        .remove-btn { color: red; cursor: pointer; font-weight: bold; width: auto; background: none; border: none; padding: 0 5px; } /* Löschen-Kreuz */
+        .form-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; } /* Zwei Eingabefelder nebeneinander */
+        footer { background: #ddd; padding: 40px 20px; margin-top: 50px; font-size: 0.85rem; } /* Fußzeile */
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo-container">
-        <img src="logo.png" alt="Seewald Logo" onerror="this.style.display='none'">
-    </div>
-    <h1>Seewald Werkzeug-Handel</h1>
-    <p>Komplettes Sortiment Profi-Forstnerbohrer</p>
+    <h1>Seewald Werkzeug-Handel</h1> <p>Komplettes Sortiment Profi-Forstnerbohrer</p> <div class="logo-container">
+        <img src="logo.png" alt="Seewald Logo" onerror="this.style.display='none'"> </div>
 </header>
 
 <div class="container">
@@ -116,14 +121,12 @@ header {
             <h2>Unsere Spar-Sets</h2>
             <div class="form-group">
                 <div style="border: 1px solid #eee; padding: 10px; text-align: center;">
-                    <h3>5-teiliges Set ideal für gängige Anwendungen:
-Enthalten sind 15, 20, 25, 30, 35 mm</h3>
+                    <h3>5-teiliges Set ideal für gängige Anwendungen: Enthalten sind 15, 20, 25, 30, 35 mm</h3>
                     <p class="price-tag">30,00 €</p>
                     <button onclick="addToCart('5-teiliges Set', 30.00)">Hinzufügen</button>
                 </div>
                 <div style="border: 1px solid #eee; padding: 10px; text-align: center;">
-                    <h3>16-teiliges Profi-Set für vielseitige Projekte:
-Enthält 6, 10, 12, 16, 20, 22, 25, 28, 32, 35, 38, 41, 45, 48, 51, 54 mm</h3>
+                    <h3>16-teiliges Profi-Set für vielseitige Projekte: Enthält 6, 10, 12, 16, 20, 22, 25, 28, 32, 35, 38, 41, 45, 48, 51, 54 mm</h3>
                     <p class="price-tag">105,00 €</p>
                     <button onclick="addToCart('16-teiliges Set', 105.00)">Hinzufügen</button>
                 </div>
@@ -134,8 +137,7 @@ Enthält 6, 10, 12, 16, 20, 22, 25, 28, 32, 35, 38, 41, 45, 48, 51, 54 mm</h3>
     <aside>
         <div class="card">
             <h3>Warenkorb</h3>
-            <div id="cart-items">Leer</div>
-            <hr>
+            <div id="cart-items">Leer</div> <hr>
             <div>
                 Summe: <span id="subtotal">0,00</span> €<br>
                 Versand: <span id="shipping">0,00</span> €<br>
@@ -159,8 +161,7 @@ Enthält 6, 10, 12, 16, 20, 22, 25, 28, 32, 35, 38, 41, 45, 48, 51, 54 mm</h3>
 
             <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
                 <input type="hidden" name="cmd" value="_xclick">
-                <input type="hidden" name="business" value="andreys.83@hotmail.com">
-                <input type="hidden" name="item_name" id="pp-item-name" value="Werkzeugbestellung">
+                <input type="hidden" name="business" value="andreys.83@hotmail.com"> <input type="hidden" name="item_name" id="pp-item-name" value="Werkzeugbestellung">
                 <input type="hidden" name="amount" id="pp-amount" value="0.00">
                 <input type="hidden" name="currency_code" value="EUR">
                 <button type="submit" id="checkout-btn" disabled style="background: #ffc439; color: black; padding: 15px;">Jetzt mit PayPal bezahlen</button>
@@ -185,19 +186,26 @@ Enthält 6, 10, 12, 16, 20, 22, 25, 28, 32, 35, 38, 41, 45, 48, 51, 54 mm</h3>
 </footer>
 
 <script>
-    let cart = [];
-    function addToCartFromSelect() {
+    let cart = []; // Die Liste deiner Produkte im Warenkorb
+
+    function addToCartFromSelect() { // Holt gewählten Artikel aus dem Dropdown
         const s = document.getElementById('product-select');
         const [n, p] = s.value.split('|');
         addToCart(n, parseFloat(p));
     }
-    function addToCart(name, price) {
+
+    function addToCart(name, price) { // Fügt Artikel hinzu oder erhöht die Anzahl
         const item = cart.find(i => i.name === name);
         if (item) item.qty++; else cart.push({name, price, qty: 1});
         renderCart();
     }
-    function removeFromCart(index) { cart.splice(index, 1); renderCart(); }
-    function renderCart() {
+
+    function removeFromCart(index) { // Entfernt einen Artikel aus dem Warenkorb
+        cart.splice(index, 1); 
+        renderCart(); 
+    }
+
+    function renderCart() { // Aktualisiert die Anzeige des Warenkorbs und rechnet alles zusammen
         const c = document.getElementById('cart-items');
         c.innerHTML = cart.length ? '' : 'Leer';
         let sub = 0;
@@ -207,16 +215,17 @@ Enthält 6, 10, 12, 16, 20, 22, 25, 28, 32, 35, 38, 41, 45, 48, 51, 54 mm</h3>
             names.push(`${item.qty}x ${item.name}`);
             c.innerHTML += `<div class="cart-item"><span>${item.qty}x ${item.name}</span><span>${(item.price*item.qty).toFixed(2)}€ <button class="remove-btn" onclick="removeFromCart(${i})">×</button></span></div>`;
         });
-        const ship = (sub >= 150 || sub === 0) ? 0 : 4.89;
+        const ship = (sub >= 150 || sub === 0) ? 0 : 4.89; // Versandkostenlogik (gratis ab 150€)
         const total = sub + ship;
         document.getElementById('subtotal').innerText = sub.toFixed(2).replace('.',',');
         document.getElementById('shipping').innerText = ship.toFixed(2).replace('.',',');
         document.getElementById('total').innerText = total.toFixed(2).replace('.',',');
-        document.getElementById('pp-amount').value = total.toFixed(2);
+        document.getElementById('pp-amount').value = total.toFixed(2); // Übergibt Endpreis an PayPal
         document.getElementById('pp-item-name').value = "Bohrer-Bestellung: " + names.join(", ");
         validateForm();
     }
-    function validateForm() {
+
+    function validateForm() { // Prüft ob Adresse ausgefüllt ist, bevor man bezahlen kann
         const fields = ['vorname', 'nachname', 'strasse', 'plz', 'stadt'];
         const allFilled = fields.every(id => {
             const el = document.getElementById(id);
@@ -226,5 +235,5 @@ Enthält 6, 10, 12, 16, 20, 22, 25, 28, 32, 35, 38, 41, 45, 48, 51, 54 mm</h3>
     }
 </script>
 </body>
-
 </html>
+
