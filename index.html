@@ -7,7 +7,12 @@
     <style>
         :root { --primary: #e44d26; --dark: #2c3e50; --light: #f4f4f4; }
         body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.4; margin: 0; color: #333; background: #f0f2f5; }
-        header { background: var(--dark); color: white; padding: 1rem; text-align: center; }
+        
+        /* Logo & Header */
+        header { background: var(--dark); color: white; padding: 1.5rem; text-align: center; }
+        .logo-container { margin-bottom: 10px; }
+        .logo-container img { max-height: 80px; width: auto; }
+        
         .container { max-width: 1100px; margin: 2rem auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 400px; gap: 20px; }
         @media (max-width: 900px) { .container { grid-template-columns: 1fr; } }
         .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
@@ -24,6 +29,9 @@
 <body>
 
 <header>
+    <div class="logo-container">
+        <img src="logo.png" alt="Seewald Logo" onerror="this.style.display='none'">
+    </div>
     <h1>Seewald Werkzeug-Handel</h1>
     <p>Komplettes Sortiment Profi-Forstnerbohrer</p>
 </header>
@@ -34,38 +42,38 @@
             <h2>Durchmesser wählen</h2>
             <select id="product-select">
                 <optgroup label="Gesamtlänge 88mm">
-                    <option value="10mm|7.99">10 mm - 7,99 €</option>
-                    <option value="12mm|8.99">12 mm - 8,99 €</option>
-                    <option value="13mm|15.99">13 mm - 15,99 €</option>
-                    <option value="14mm|9.99">14 mm - 9,99 €</option>
-                    <option value="15mm|9.99">15 mm - 9,99 €</option>
-                    <option value="16mm|9.99">16 mm - 9,99 €</option>
-                    <option value="18mm|10.99">18 mm - 10,99 €</option>
-                    <option value="19mm|10.99">19 mm - 10,99 €</option>
-                    <option value="20mm|10.99">20 mm - 10,99 €</option>
-                    <option value="22mm|10.99">22 mm - 10,99 €</option>
-                    <option value="25mm|11.99">25 mm - 11,99 €</option>
-                    <option value="28mm|11.99">28 mm - 11,99 €</option>
-                    <option value="30mm|11.99">30 mm - 11,99 €</option>
-                    <option value="32mm|13.99">32 mm - 13,99 €</option>
-                    <option value="35mm|14.99">35 mm - 14,99 €</option>
-                    <option value="38mm|15.99">38 mm - 15,99 €</option>
-                    <option value="40mm|16.99">40 mm - 16,99 €</option>
-                    <option value="44mm|17.99">44 mm - 17,99 €</option>
-                    <option value="45mm|18.99">45 mm - 18,99 €</option>
-                    <option value="50mm|18.99">50 mm - 18,99 €</option>
-                    <option value="55mm|22.99">55 mm - 22,99 €</option>
+                    <option value="10mm (88)|7.99">10 mm - 7,99 €</option>
+                    <option value="12mm (88)|8.99">12 mm - 8,99 €</option>
+                    <option value="13mm (88)|15.99">13 mm - 15,99 €</option>
+                    <option value="14mm (88)|9.99">14 mm - 9,99 €</option>
+                    <option value="15mm (88)|9.99">15 mm - 9,99 €</option>
+                    <option value="16mm (88)|9.99">16 mm - 9,99 €</option>
+                    <option value="18mm (88)|10.99">18 mm - 10,99 €</option>
+                    <option value="19mm (88)|10.99">19 mm - 10,99 €</option>
+                    <option value="20mm (88)|10.99">20 mm - 10,99 €</option>
+                    <option value="22mm (88)|10.99">22 mm - 10,99 €</option>
+                    <option value="25mm (88)|11.99">25 mm - 11,99 €</option>
+                    <option value="28mm (88)|11.99">28 mm - 11,99 €</option>
+                    <option value="30mm (88)|11.99">30 mm - 11,99 €</option>
+                    <option value="32mm (88)|13.99">32 mm - 13,99 €</option>
+                    <option value="35mm (88)|14.99">35 mm - 14,99 €</option>
+                    <option value="38mm (88)|15.99">38 mm - 15,99 €</option>
+                    <option value="40mm (88)|16.99">40 mm - 16,99 €</option>
+                    <option value="44mm (88)|17.99">44 mm - 17,99 €</option>
+                    <option value="45mm (88)|18.99">45 mm - 18,99 €</option>
+                    <option value="50mm (88)|18.99">50 mm - 18,99 €</option>
+                    <option value="55mm (88)|22.99">55 mm - 22,99 €</option>
                 </optgroup>
                 <optgroup label="Gesamtlänge 150mm">
-                    <option value="60mm|28.99">60 mm - 28,99 €</option>
-                    <option value="65mm|34.99">65 mm - 34,99 €</option>
-                    <option value="70mm|37.99">70 mm - 37,99 €</option>
-                    <option value="75mm|41.99">75 mm - 41,99 €</option>
-                    <option value="80mm|44.99">80 mm - 44,99 €</option>
-                    <option value="85mm|49.99">85 mm - 49,99 €</option>
-                    <option value="90mm|51.99">90 mm - 51,99 €</option>
-                    <option value="95mm|60.99">95 mm - 60,99 €</option>
-                    <option value="100mm|64.99">100 mm - 64,99 €</option>
+                    <option value="60mm (150)|28.99">60 mm - 28,99 €</option>
+                    <option value="65mm (150)|34.99">65 mm - 34,99 €</option>
+                    <option value="70mm (150)|37.99">70 mm - 37,99 €</option>
+                    <option value="75mm (150)|41.99">75 mm - 41,99 €</option>
+                    <option value="80mm (150)|44.99">80 mm - 44,99 €</option>
+                    <option value="85mm (150)|49.99">85 mm - 49,99 €</option>
+                    <option value="90mm (150)|51.99">90 mm - 51,99 €</option>
+                    <option value="95mm (150)|60.99">95 mm - 60,99 €</option>
+                    <option value="100mm (150)|64.99">100 mm - 64,99 €</option>
                 </optgroup>
             </select>
             <button onclick="addToCartFromSelect()">In den Warenkorb</button>
@@ -81,7 +89,8 @@ Enthalten sind 15, 20, 25, 30, 35 mm</h3>
                     <button onclick="addToCart('5-teiliges Set', 30.00)">Hinzufügen</button>
                 </div>
                 <div style="border: 1px solid #eee; padding: 10px; text-align: center;">
-                    <h3>16-teiliges Profi-Set für vielseitige Projekte: Enthält 6, 10, 12, 16, 20, 22, 25, 28, 32, 35, 38, 41, 45, 48, 51, 54 mm</h3>
+                    <h3>16-teiliges Profi-Set für vielseitige Projekte:
+Enthält 6, 10, 12, 16, 20, 22, 25, 28, 32, 35, 38, 41, 45, 48, 51, 54 mm</h3>
                     <p class="price-tag">105,00 €</p>
                     <button onclick="addToCart('16-teiliges Set', 105.00)">Hinzufügen</button>
                 </div>
@@ -121,7 +130,7 @@ Enthalten sind 15, 20, 25, 30, 35 mm</h3>
                 <input type="hidden" name="item_name" id="pp-item-name" value="Werkzeugbestellung">
                 <input type="hidden" name="amount" id="pp-amount" value="0.00">
                 <input type="hidden" name="currency_code" value="EUR">
-                <button type="submit" id="checkout-btn" disabled style="background: #ffc439; color: black;">Mit PayPal bezahlen</button>
+                <button type="submit" id="checkout-btn" disabled style="background: #ffc439; color: black; padding: 15px;">Jetzt mit PayPal bezahlen</button>
             </form>
         </div>
     </aside>
@@ -130,7 +139,7 @@ Enthalten sind 15, 20, 25, 30, 35 mm</h3>
 <footer>
     <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
         <div>
-            <strong>Impressum:</strong><br>
+            <strong>Impressum & Kontakt:</strong><br>
             Andreas Seewald, Nürnberger Str. 25, 85055 Ingolstadt<br>
             Tel: 0171 8241679 | E-Mail: andreys.83@hotmail.com | USt-ID: DE453482781
         </div>
@@ -171,12 +180,15 @@ Enthalten sind 15, 20, 25, 30, 35 mm</h3>
         document.getElementById('shipping').innerText = ship.toFixed(2).replace('.',',');
         document.getElementById('total').innerText = total.toFixed(2).replace('.',',');
         document.getElementById('pp-amount').value = total.toFixed(2);
-        document.getElementById('pp-item-name').value = "Bestellung: " + names.join(", ");
+        document.getElementById('pp-item-name').value = "Bohrer-Bestellung: " + names.join(", ");
         validateForm();
     }
     function validateForm() {
         const fields = ['vorname', 'nachname', 'strasse', 'plz', 'stadt'];
-        const allFilled = fields.every(id => document.getElementById(id).value.trim() !== '');
+        const allFilled = fields.every(id => {
+            const el = document.getElementById(id);
+            return el && el.value.trim() !== '';
+        });
         document.getElementById('checkout-btn').disabled = !(allFilled && cart.length > 0);
     }
 </script>
