@@ -8,10 +8,43 @@
         :root { --primary: #e44d26; --dark: #2c3e50; --light: #f4f4f4; }
         body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.4; margin: 0; color: #333; background: #f0f2f5; }
         
-        /* Logo & Header */
-        header { background: var(--dark); color: white; padding: 1.5rem; text-align: center; }
-        .logo-container { margin-bottom: 10px; }
-        .logo-container img { max-height: 80px; width: auto; }
+        /* Logo & Header Anpassung */
+header { 
+    background: var(--dark); 
+    color: white; 
+    padding: 1.5rem; 
+    display: flex;             /* Aktiviert Flexbox */
+    justify-content: center;   /* Zentriert den Text (H1) */
+    align-items: center;       /* Richtet alles vertikal mittig aus */
+    position: relative;        /* Ermöglicht die Positionierung des Logos */
+    min-height: 100px;
+}
+
+.logo-container { 
+    position: absolute;        /* Fixiert das Logo unabhängig vom Text */
+    right: 30px;               /* Abstand vom rechten Rand */
+    top: 50%;                  /* Vertikale Mitte */
+    transform: translateY(-50%); /* Perfekte Zentrierung nach oben/unten */
+}
+
+.logo-container img { 
+    max-height: 120px;         /* Vorher 80px -> Jetzt 120px für mehr Größe */
+    width: auto; 
+    display: block;
+}
+
+/* Für Mobilgeräte: Logo wieder über den Text setzen, damit es nicht überlappt */
+@media (max-width: 700px) {
+    header { 
+        flex-direction: column; 
+        position: static; 
+    }
+    .logo-container { 
+        position: static; 
+        transform: none; 
+        margin-bottom: 15px;
+    }
+}
         
         .container { max-width: 1100px; margin: 2rem auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 400px; gap: 20px; }
         @media (max-width: 900px) { .container { grid-template-columns: 1fr; } }
