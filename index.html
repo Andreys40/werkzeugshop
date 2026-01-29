@@ -251,7 +251,7 @@
             names.push(`${item.qty}x ${item.name}`);
             c.innerHTML += `<div class="cart-item"><span>${item.qty}x ${item.name}</span><span>${(item.price*item.qty).toFixed(2)}€ <button class="remove-btn" onclick="removeFromCart(${i})">×</button></span></div>`;
         });
-        const ship = (sub >= 150 || sub === 0) ? 0 : 4.89; //
+        const ship = (sub >= 150 || sub === 0) ? 0 : 2.99; //
         const total = sub + ship;
         document.getElementById('subtotal').innerText = sub.toFixed(2).replace('.',',');
         document.getElementById('shipping').innerText = ship.toFixed(2).replace('.',',');
@@ -272,6 +272,7 @@
 </body>
 
 </html>
+
 
 
 
