@@ -4,83 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seewald Werkzeug-Handel</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Seewald Tools">
+    <link rel="apple-touch-icon" href="logo.png">
+    <meta name="mobile-web-app-capable" content="yes">
+	<link rel="manifest" href="manifest.json">
+    <script src="https://www.paypal.com/sdk/js?client-id=BAAGjBbCy5qINSzruDL-PoRfCn0CgyxYeIORc7vTZE2aVOIPkFNEY6xuhxVK1SMtA8cyVqeRWkqi0knsXE&currency=EUR&components=messages"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=BAAGjBbCy5qINSzruDL-PoRfCn0CgyxYeIORc7vTZE2aVOIPkFNEY6xuhxVK1SMtA8cyVqeRWkqi0knsXE&currency=EUR&components=messages"></script>
+    
     <style>
         :root { --primary: #e44d26; --dark: #2c3e50; --light: #f4f4f4; }
         body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.4; margin: 0; color: #333; background: #f0f2f5; }
         
-        /* Header Bereich */
         header { 
             background: var(--dark); 
-            color: white; 
-            padding: 2rem 1.5rem; 
-            text-align: center; 
-            position: relative; 
-            min-height: 120px; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 1px, transparent 1px, transparent 10px);
+            color: white; padding: 2rem 1.5rem; text-align: center; position: relative; min-height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center;
         }
 
-        header h1 { 
-            margin: 0; 
-            font-size: 2.2rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-        }
+        header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 1px; }
+        header p { margin: 10px 0 0 0; font-size: 1.4rem; color: var(--primary); font-weight: bold; border-top: 2px solid var(--primary); display: inline-block; padding-top: 5px; }
 
-        header p { 
-            margin: 10px 0 0 0; 
-            font-size: 1.4rem; 
-            color: var(--primary); 
-            font-weight: bold; 
-            border-top: 2px solid var(--primary); 
-            display: inline-block;
-            padding-top: 5px;
-        }
-
-        .logo-container { 
-            position: absolute; 
-            right: 40px; 
-            top: 50%; 
-            transform: translateY(-50%); 
-        }
-
-        .logo-container img { 
-            max-height: 110px; 
-            width: auto; 
-        }
+        .logo-container { position: absolute; right: 30px; top: 50%; transform: translateY(-50%); }
+        .logo-container img { height: 140px; width: 140px; object-fit: cover; border-radius: 50%; border: 3px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.3); background: white; }
         
-        /* Layout-Gitter (3 Spalten) */
-        .container { 
-            max-width: 1400px; 
-            margin: 2rem auto; 
-            padding: 0 20px; 
-            display: grid; 
-            grid-template-columns: 200px 1fr 400px; 
-            gap: 20px; 
+        .container { max-width: 100%; margin: 2rem 0; padding: 0 10px; display: grid; grid-template-columns: 415px 1fr 400px; gap: 15px; }
+
+        .side-column { display: grid; grid-template-columns: 200px 200px; gap: 10px; justify-content: start; align-content: start; }
+
+        .side-column img { 
+            width: 200px; height: 200px; object-fit: cover; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); background: #fff; display: block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: zoom-in; position: relative; z-index: 1;
         }
 
-        .side-column {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+        .side-column img:hover { transform: scale(2.2); z-index: 999; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transform-origin: left center; }
 
-        .side-column img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            background: #fff;
-        }
-
-        /* Mobile Ansicht */
         @media (max-width: 1100px) {
             .container { grid-template-columns: 1fr; } 
-            .side-column { display: none; } 
+            .side-column { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); } 
             .logo-container { position: static; transform: none; margin-top: 15px; }
-            header { padding: 1.5rem; }
         }
 
         .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
@@ -91,14 +54,15 @@
         .cart-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding: 5px 0; font-size: 0.85rem; }
         .remove-btn { color: red; cursor: pointer; font-weight: bold; width: auto; background: none; border: none; padding: 0 5px; }
         .form-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        footer { background: #ddd; padding: 40px 20px; margin-top: 50px; font-size: 0.85rem; }
+        footer { background: #ddd; padding: 40px 20px; margin-top: 50px; font-size: 0.85rem; border-top: 1px solid #ccc; }
+        .btn-whatsapp { background: #25D366; color: white; font-size: 1.1rem; padding: 15px; border-radius: 30px; margin-top: 10px; }
     </style>
 </head>
 <body>
 
 <header>
     <h1>Seewald Tools</h1>
-    <p>Komplettes Sortiment Profi-Forstnerbohrer</p>
+    <p>Seewald Präzisionstechnik & Werkstattbedarf</p>
     <div class="logo-container">
         <img src="logo.png" alt="Seewald Logo" onerror="this.style.display='none'">
     </div>
@@ -106,16 +70,90 @@
 
 <div class="container">
     <aside class="side-column">
-        <img src="oben-links.jpg.jfif" alt="Bohrer Oben Links">
-        <img src="unten-links.jpg.png" alt="Bohrer Unten Links">
-        <img src="oben-rechts.jpg.png" alt="Bild Oben Rechts">
-        <img src="unten-rechts.jpg.png" alt="Bild Unten Rechts">
+		<div style="width: 200px; margin-bottom: 15px; text-align: center;">
+        <img src="oben-links.jfif" alt="Bild 1">
+			<p style="font-size: 0.85rem; margin: 5px 0 0 0; font-weight: bold;">Profi Forstnerbohrer
+			</p>
+    </div>
+		<div style="width: 200px; margin-bottom: 15px; text-align: center;">
+        <img src="unten-links.jpg.png" alt="Bild 2">
+			<p style="font-size: 0.85rem; margin: 5px 0 0 0; font-weight: bold;">Forstnerbohrer 5 & 16 Set
+			</p>
+    </div>
+		<div style="width: 200px; margin-bottom: 15px; text-align: center;">
+        <img src="oben-rechts.jpg.png" alt="Bild 3">
+		<p style="font-size: 0.85rem; margin: 5px 0 0 0; font-weight: bold;">Forstnerbohrer Schaft Ø8, Ø10 & Ø13
+		</p>
+    </div>
+	<div style="width: 200px; margin-bottom: 15px; text-align: center;">
+        <img src="unten-rechts.jpg.png" alt="Bild 4">
+	<p style="font-size: 0.85rem; margin: 5px 0 0 0; font-weight: bold;">Profi Forstnerbohrer
+	</p>
+    </div>
+	<div style="width: 200px; margin-bottom: 15px; text-align: center;">
+        <img src="Schraube.PNG" alt="Bild 5">
+	<p style="font-size: 0.85rem; margin: 5px 0 0 0; font-weight: bold;">Torx-Klemmschraube
+	</p>
+    </div>
+	<div style="width: 200px; margin-bottom: 15px; text-align: center;">
+        <img src="Schraube1.PNG" alt="Bild 6">
+	<p style="font-size: 0.85rem; margin: 5px 0 0 0; font-weight: bold;">Torx-Klemmschraube
+	</p>
+    </div>
+	<div style="width: 200px; margin-bottom: 15px; text-align: center;">
+        <img src="Screenshot.png" alt="Bild 7">
+	<p style="font-size: 0.85rem; margin: 5px 0 0 0; font-weight: bold;">Einsatzboxen für WSP
+	</p>
+    </div>
+	<div style="width: 200px; margin-bottom: 15px; text-align: center;">
+        <img src="Screenshot 2025-09-20 105632.png" alt="Bild 8">
+	<p style="font-size: 0.85rem; margin: 5px 0 0 0; font-weight: bold;">Einsatzboxen für WSP
+	</p>
+		 </div>
+	<div style="width: 200px; margin-bottom: 15px; text-align: center;">
+        <img src="50mm.jpg" alt="Bild 9">
+	<p style="font-size: 0.85rem; margin: 5px 0 0 0; font-weight: bold;">PH2 Kreuzschlitz Schrauberbits 50mm
+	</p>
+		 </div>
+	<div style="width: 200px; margin-bottom: 15px; text-align: center;">
+        <img src="70mm.jpg" alt="Bild 10">
+	<p style="font-size: 0.85rem; margin: 5px 0 0 0; font-weight: bold;">PH2 Kreuzschlitz Schrauberbits 70mm
+	</p>
+		 </div>
+	<div style="width: 200px; margin-bottom: 15px; text-align: center;">
+        <img src="90mm.jpg" alt="Bild 11">
+	<p style="font-size: 0.85rem; margin: 5px 0 0 0; font-weight: bold;">PH2 Kreuzschlitz Schrauberbits 90mm
+	</p>
+		 </div>
+	<div style="width: 200px; margin-bottom: 15px; text-align: center;">
+        <img src="Set.jpg" alt="Bild 12">
+	<p style="font-size: 0.85rem; margin: 5px 0 0 0; font-weight: bold;">PH2 Kreuzschlitz Schrauberbits Set
+	</p>
+		 </div>
+	<div style="width: 200px; margin-bottom: 15px; text-align: center;">
+        <img src="Entgratungswerkzeug Set.png" alt="Bild 13">
+	<p style="font-size: 0.85rem; margin: 5px 0 0 0; font-weight: bold;">Entgratungswerkzeug Set
+	</p>
+		 </div>
+	<div style="width: 200px; margin-bottom: 15px; text-align: center;">
+        <img src="Bohrer-Set.png" alt="Bild 14">
+	<p style="font-size: 0.85rem; margin: 5px 0 0 0; font-weight: bold;">Bohrer-Set
+	</p>
+    </div>
     </aside>
     
     <main>
+        <div style="background: #fdfaf0; padding: 20px; border-left: 6px solid #e44d26; border-radius: 8px; font-size: 0.95rem; margin-bottom: 25px; color: #444; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+            <strong style="color: #e44d26; font-size: 1.15rem; display: block; margin-bottom: 10px;">📦 Wichtige Bestell- & Lieferhinweise</strong>
+            <ul style="margin: 0; padding-left: 20px; line-height: 1.6;">
+                <li><strong>Individuelle Anfragen:</strong> Sie benötigen einen speziellen Durchmesser oder eine Schraubengröße, die nicht gelistet ist? Wir helfen gerne weiter – kontaktieren Sie uns für ein unverbindliches Angebot.</li>
+                <li><strong>Verfügbarkeit & Teillieferung:</strong> Sollte ein Artikel einmal nicht in der gewünschten Menge sofort ab Lager verfügbar sein, versenden wir den vorhandenen Bestand umgehend.</li>
+                <li><strong>Kostenlose Nachlieferung:</strong> Fehlende Mengen liefern wir Ihnen schnellstmöglich nach. Hierbei entstehen für Sie selbstverständlich <strong>keine zusätzlichen Versandkosten</strong>.</li>
+            </ul>
+        </div>
         <div class="card">
-            <h2>Durchmesser wählen</h2>
-            <select id="product-select">
+            <h2>Forstnerbohrer: Durchmesser wählen</h2>
+            <select id="select-bohrer">
                 <optgroup label="Gesamtlänge 88mm | Ø10 - Ø35 Schaft Ø8 | Ø36 - Ø55 Schaft Ø10">
                     <option value="10mm (88)|7.99">10 mm - 7,99 €</option>
                     <option value="12mm (88)|8.99">12 mm - 8,99 €</option>
@@ -151,29 +189,132 @@
                     <option value="100mm (150)|64.99">100 mm - 64,99 €</option>
                 </optgroup>
             </select>
-            <button onclick="addToCartFromSelect()">In den Warenkorb</button>
+            <button onclick="addToCartFromSelect('select-bohrer')">Bohrer hinzufügen</button>
         </div>
 
         <div class="card">
-            <h2>Unsere Spar-Sets</h2>
+            <h2>Unsere Spar-Sets (Bohrer)</h2>
             <div class="form-group">
                 <div style="border: 1px solid #eee; padding: 10px; text-align: center;">
                     <h3>5-teiliges Set ideal für gängige Anwendungen: Enthalten sind 15, 20, 25, 30, 35 mm</h3>
                     <p class="price-tag">30,00 €</p>
-                    <button onclick="addToCart('5-teiliges Set', 30.00)">Hinzufügen</button>
+                    <button onclick="addToCart('5-teiliges Bohrer Set', 30.00)">Hinzufügen</button>
                 </div>
                 <div style="border: 1px solid #eee; padding: 10px; text-align: center;">
                     <h3>16-teiliges Profi-Set: Enthält 6, 10, 12, 16, 20, 22, 25, 28, 32, 35, 38, 41, 45, 48, 51, 54 mm</h3>
                     <p class="price-tag">105,00 €</p>
-                    <button onclick="addToCart('16-teiliges Set', 105.00)">Hinzufügen</button>
+                    <button onclick="addToCart('16-teiliges Bohrer Set', 105.00)">Hinzufügen</button>
                 </div>
             </div>
         </div>
+
+        <hr style="margin: 30px 0; border: 0; border-top: 2px dashed #ccc;">
+
+        <div class="card">
+            <h2>Torx-Klemmschrauben (10 Stück)</h2>
+            <select id="select-schrauben">
+                <optgroup label="Sofort Lieferbar">
+                    <option value="M2 × 4 mm (10 Stück)|15">M2 × 4 mm - 15 €</option>
+                    <option value="M2 × 8 mm (10 Stück)|15">M2 × 8 mm - 15 €</option>
+                    <option value="M2,5 × 5 mm (10 Stück)|15">M2,5 × 5 mm - 15 €</option>
+		    <option value="M2,5 × 6 mm (10 Stück)|15">M2,5 × 6 mm - 15 €</option>
+		    <option value="M3 × 8 mm (10 Stück)|15">M3 × 8 mm - 15 €</option>
+		    <option value="M3 × 10 mm (10 Stück)|15">M3 × 10 mm - 15 €</option>
+		    <option value="M3 × 12 mm (10 Stück)|15">M3 × 12 mm - 15 €</option>
+   		    <option value="M3,5 × 8 mm (10 Stück)|15">M3,5 × 8 mm - 15 €</option>
+		    <option value="M3,5 × 10 mm (10 Stück)|15">M3,5 × 10 mm - 15 €</option>
+		    <option value="M4 × 12 mm (10 Stück)|15">M4 × 12 mm - 15 €</option>
+		    <option value="M5 × 12 mm (10 Stück)|18">M5 × 12 mm - 18 €</option>
+		    <option value="M5 × 16 mm (10 Stück)|18">M5 × 16 mm - 18 €</option>
+		    <option value="M6 × 18 mm (10 Stück)|25">M6 × 18 mm - 25 €</option>
+                </optgroup>
+                <optgroup label="Größen | Nicht mehr vorrätig 3 bis 5 Wochen Lieferzeit">
+                    <option value="M2 × 5 mm (10 Stück)|15">M2 × 5 mm - 15 €</option>
+                    <option value="M2 × 6 mm (10 Stück)|15">M2 × 6 mm - 15 €</option>
+                    <option value="M2,2 × 4 mm (10 Stück)|15">M2,2 × 4 mm - 15 €</option>
+                    <option value="M2,2 × 5 mm (10 Stück)|15">M2,2 × 5 mm - 15 €</option>
+                    <option value="M2,2 × 6 mm (10 Stück)|15">M2,2 × 6 mm - 15 €</option>
+                    <option value="M2,2 × 8 mm (10 Stück)|15">M2,2 × 8 mm - 15 €</option>
+                    <option value="M2,5 × 7 mm (10 Stück)|15">M2,5 × 7 mm - 15 €</option>
+                    <option value="M2,5 × 8 mm (10 Stück)|15">M2,5 × 8 mm - 15 €</option>
+                    <option value="M2,5 × 10 mm (10 Stück)|15">M2,5 × 10 mm - 15 €</option>
+		    <option value="M3 × 6 mm (10 Stück)|15">M3 × 6 mm - 15 €</option>
+		    <option value="M3 × 7 mm (10 Stück)|15">M3 × 7 mm - 15 €</option>
+		    <option value="M3,5 × 7 mm (10 Stück)|15">M3,5 × 7 mm - 15 €</option>
+		    <option value="M4 × 8 mm (10 Stück)|15">M4 × 8 mm - 15 €</option>
+		    <option value="M4 × 10 mm (10 Stück)|15">M4 × 10 mm - 15 €</option>
+		    <option value="M4 × 14 mm (10 Stück)|15">M4 × 14 mm - 15 €</option>
+		    <option value="M4 × 16 mm (10 Stück)|15">M4 × 16 mm - 15 €</option>
+		    <option value="M4,5 × 10 mm (10 Stück)|15">M4,5 × 10 mm - 15 €</option>
+		    <option value="M4,5 × 12 mm (10 Stück)|15">M4,5 × 12 mm - 15 €</option>
+		    <option value="M4,5 × 14 mm (10 Stück)|15">M4,5 × 14 mm - 15 €</option>
+		    <option value="M4,5 × 16 mm (10 Stück)|15">M4,5 × 16 mm - 15 €</option>
+		    <option value="M5 × 10 mm (10 Stück)|15">M5 × 10 mm - 15 €</option>
+		    <option value="M5 × 14 mm (10 Stück)|18">M5 × 14 mm - 18 €</option>
+		    <option value="M6 × 10 mm (10 Stück)|20">M6 × 10 mm - 20 €</option>
+		    <option value="M6 × 12 mm (10 Stück)|20">M6 × 12 mm - 20 €</option>
+		    <option value="M6 × 14 mm (10 Stück)|20">M6 × 14 mm - 20 €</option>
+		    <option value="M6 × 16 mm (10 Stück)|20">M6 × 16 mm - 20 €</option>
+		    <option value="M6 × 20 mm (10 Stück)|25">M6 × 20 mm - 25 €</option>
+                </optgroup>
+            </select>
+            <button onclick="addToCartFromSelect('select-schrauben')">Schrauben hinzufügen</button>
+        </div>
+
+        <div class="card">
+            <h2>Einsatzboxen für WSP</h2>
+            <div class="form-group">
+                <div style="border: 1px solid #eee; padding: 10px; text-align: center;">
+                    <h3>10x Einsatzboxen 18 × 18 × 6mm für Wendeschneidplatten</h3>
+                    <p class="price-tag">15,00 €</p>
+                    <button onclick="addToCart('10x Einsatzboxen', 15.00)">Hinzufügen</button>
+                </div>
+                <div style="border: 1px solid #eee; padding: 10px; text-align: center;">
+                    <h3>50x Einsatzboxen 18 × 18 × 6mm für Wendeschneidplatten</h3>
+                    <p class="price-tag">60,00 €</p>
+                    <button onclick="addToCart('50x Einsatzboxen', 60.00)">Hinzufügen</button>
+                </div>
+            </div>
+        </div>
+    <hr style="margin: 30px 0; border: 0; border-top: 2px dashed #ccc;">
+
+        <div class="card">
+    <h2>PH2 Kreuzschlitz Schrauberbits S2 Stahl 50/70/90mm Magnetisch Rutschfest</h2>
+    <select id="select-bits">
+        <optgroup label="Auswählen">
+            <option value="PH2 Bit 50mm|1.07">Länge=50mm - 1,07 €</option>
+            <option value="PH2 Bit 70mm|1.19">Länge=70mm - 1,19 €</option>
+            <option value="PH2 Bit 90mm|1.92">Länge=90mm - 1,92 €</option>
+        </optgroup>
+        <optgroup label="Auswählen Set">
+            <option value="PH2 Bit Set 50/70/90mm|3.99">Set Länge=50/70/90mm - 3,99 €</option>
+        </optgroup>
+    </select>
+    <button onclick="addToCartFromSelect('select-bits')">PH2 Kreuzschlitz Schrauberbits hinzufügen</button>
+</div>
+
+        <div class="card">
+            <h2>Entgratungswerkzeug Set & 13-teiliges metrisches Bohrer-Set</h2>
+            <div class="form-group">
+                <div style="border: 1px solid #eee; padding: 10px; text-align: center;">
+                    <h3>Entgratungswerkzeug Set NB1100 mit 10 HSS Klingen Metall Holz Kunststoff</h3>
+                    <p class="price-tag">6,95 €</p>
+                    <button onclick="addToCart('Entgratungswerkzeug Set', 6.95)">Hinzufügen</button>
+                </div>
+                <div style="border: 1px solid #eee; padding: 10px; text-align: center;">
+                    <h3>13-teiliges metrisches Bohrer-Set TiN-Beschichtung Spitzenwinkel: 118°</h3>
+                    <p class="price-tag">8,99 €</p>
+                    <button onclick="addToCart('Bohrer-Set', 8.99)">Hinzufügen</button>
+                </div>
+            </div>
+        </div>
+
     </main>
 
-    <aside>
+
+ <aside>
         <div class="card">
-            <h3>Warenkorb</h3>
+            <h3>🛒 Warenkorb</h3>
             <div id="cart-items">Leer</div>
             <hr>
             <div>
@@ -181,87 +322,153 @@
                 Versand: <span id="shipping">0,00</span> €<br>
                 <strong>Gesamt: <span id="total">0,00</span> €</strong>
             </div>
-
-            <h4 style="margin-top:15px; border-top:1px solid #eee; padding-top:10px;">PayPal Lieferadresse eingeben</h4>
-            <form id="order-form" oninput="validateForm()">
-                <select id="anrede"><option>Herr</option><option>Frau</option><option>Firma</option></select>
-                <input type="text" id="firma" placeholder="Firma (Optional)">
-                <div class="form-group">
-                    <input type="text" id="vorname" placeholder="Vorname *" required>
-                    <input type="text" id="nachname" placeholder="Nachname *" required>
-                </div>
-                <input type="text" id="strasse" placeholder="Straße & Nr. *" required>
-                <div class="form-group">
-                    <input type="text" id="plz" placeholder="PLZ *" required>
-                    <input type="text" id="stadt" placeholder="Stadt *" required>
-                </div>
-            </form>
-
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                <input type="hidden" name="cmd" value="_xclick">
-                <input type="hidden" name="business" value="andreys.83@hotmail.com">
-                <input type="hidden" name="item_name" id="pp-item-name" value="Werkzeugbestellung">
-                <input type="hidden" name="amount" id="pp-amount" value="0.00">
-                <input type="hidden" name="currency_code" value="EUR">
-				<p style="font-size: 0.75rem; color: #666; margin: 10px 0; line-height: 1.2; text-align: center;">
-        <i>Hinweis: Der Versand erfolgt an die bei PayPal hinterlegte Lieferadresse. Bitte prüfen Sie diese beim Bezahlen.</i>
-                <button type="submit" id="checkout-btn" disabled style="background: #ffc439; color: black; padding: 15px;">Jetzt mit PayPal bezahlen</button>
-            </form>
-
             
+            <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">
+                💳 <b>PayPal Service:</b> Ratenzahlung / 30 Tage möglich.
+            </p>
+            <div id="paypal-banner" data-pp-message data-pp-style-layout="text" data-pp-amount="0.00"></div>
+
+            <h4 style="margin-top:20px; border-top:1px solid #eee; padding-top:10px;">Lieferadresse</h4>
+            <select id="anrede"><option>Herr</option><option>Frau</option><option>Firma</option></select>
+            <input type="text" id="firma" placeholder="Firma (Optional)">
+            <div class="form-group">
+                <input type="text" id="vorname" placeholder="Vorname *" oninput="validateForm()">
+                <input type="text" id="nachname" placeholder="Nachname *" oninput="validateForm()">
+            </div>
+            <input type="email" id="email" placeholder="E-Mail Adresse *" oninput="validateForm()">
+            <input type="text" id="strasse" placeholder="Straße & Nr. *" oninput="validateForm()">
+            <div class="form-group">
+                <input type="text" id="plz" placeholder="PLZ *" oninput="validateForm()">
+                <input type="text" id="stadt" placeholder="Stadt *" oninput="validateForm()">
+            </div>
+
+            <h4 style="margin-top:20px;">Zahlungsmethode</h4>
+            <div style="background: #f9f9f9; padding: 10px; border-radius: 6px; text-align: left;">
+                <label style="display: block; margin-bottom: 10px; cursor: pointer;">
+                    <input type="radio" name="payment" value="paypal" checked onclick="togglePayment()"> <strong>PayPal</strong>
+                </label>
+                <label style="display: block; cursor: pointer;">
+                    <input type="radio" name="payment" value="whatsapp" onclick="togglePayment()"> <strong>Vorkasse / WhatsApp</strong>
+                </label>
+            </div>
+
+            <div id="paypal-section" style="margin-top: 20px;">
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                    <input type="hidden" name="cmd" value="_xclick">
+                    <input type="hidden" name="business" value="andreys.83@hotmail.com">
+                    <input type="hidden" name="item_name" id="pp-item-name" value="Werkzeugbestellung">
+                    <input type="hidden" name="amount" id="pp-amount" value="0.00">
+                    <input type="hidden" name="currency_code" value="EUR">
+                    <button type="submit" id="checkout-btn" disabled style="background: #ffc439; color: black; border-radius: 25px; padding: 15px;">Jetzt mit PayPal bezahlen</button>
+                </form>
+            </div>
+
+            <div id="whatsapp-section" style="display: none; margin-top: 20px;">
+                <button onclick="sendWhatsApp()" class="btn-whatsapp">✅ Per WhatsApp bestellen</button>
+            </div>
+
+            <div style="text-align: center; border: 2px solid #25D366; border-radius: 8px; padding: 15px; margin-top: 20px; background: #fff;">
+                <h4 style="margin: 0 0 10px 0; color: #2c3e50;">Schnellanfrage</h4>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 10px;">
+                    <a href="https://wa.me/491718241679" target="_blank" style="text-decoration: none;">
+                        <div style="background: #25D366; color: white; padding: 10px; border-radius: 5px; font-weight: bold;">🟢 WhatsApp</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </aside>
+</div>
+
 <footer>
     <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
         <div>
             <strong>Impressum & Kontakt:</strong><br>
-             Andreas Seewald<br>
-		Nürnberger Str. 25<br>
-		85055 Ingolstadt<br>
-            Tel: 0171 8241679<br> 
-		USt-ID: DE453482781<br>
-		<span style="white-space: nowrap;">E-Mail: andreys.83@hotmail.com</span><br>
+            Andreas Seewald | Nürnberger Str. 25 | 85055 Ingolstadt<br>
+            Tel: 0171 8241679 | E-Mail: andreys.83@hotmail.com
         </div>
         <div>
             <strong>Rechtliches:</strong><br>
             2 Jahre Gewährleistung. 14 Tage Widerrufsrecht.<br>
-            Versandkostenfrei ab 150 €!
+            Versandkostenfrei ab 150 €! (Sonst 2,99 €)
         </div>
     </div>
 </footer>
 
 <script>
-    let cart = []; //
-    function addToCartFromSelect() { //
-        const s = document.getElementById('product-select');
+    let cart = [];
+
+    function addToCartFromSelect(id) {
+        const s = document.getElementById(id);
         const [n, p] = s.value.split('|');
         addToCart(n, parseFloat(p));
     }
-    function addToCart(name, price) { //
+
+    function addToCart(name, price) {
         const item = cart.find(i => i.name === name);
         if (item) item.qty++; else cart.push({name, price, qty: 1});
         renderCart();
     }
-    function removeFromCart(index) { cart.splice(index, 1); renderCart(); } //
-    function renderCart() { //
+
+    function removeFromCart(index) { cart.splice(index, 1); renderCart(); }
+
+    function renderCart() {
         const c = document.getElementById('cart-items');
         c.innerHTML = cart.length ? '' : 'Leer';
-        let sub = 0;
-        let names = [];
+        let sub = 0; let names = [];
+        
         cart.forEach((item, i) => {
             sub += item.price * item.qty;
             names.push(`${item.qty}x ${item.name}`);
             c.innerHTML += `<div class="cart-item"><span>${item.qty}x ${item.name}</span><span>${(item.price*item.qty).toFixed(2)}€ <button class="remove-btn" onclick="removeFromCart(${i})">×</button></span></div>`;
         });
-        const ship = (sub >= 150 || sub === 0) ? 0 : 2.99; //
+
+        const ship = (sub >= 150 || sub === 0) ? 0 : 2.99;
         const total = sub + ship;
+
         document.getElementById('subtotal').innerText = sub.toFixed(2).replace('.',',');
         document.getElementById('shipping').innerText = ship.toFixed(2).replace('.',',');
         document.getElementById('total').innerText = total.toFixed(2).replace('.',',');
+        
         document.getElementById('pp-amount').value = total.toFixed(2);
-        document.getElementById('pp-item-name').value = "Bohrer-Bestellung: " + names.join(", ");
+        document.getElementById('pp-item-name').value = "Bestellung: " + names.join(", ");
+
+        const ppBanner = document.getElementById('paypal-banner');
+        if (ppBanner) {
+            ppBanner.setAttribute('data-pp-amount', total.toFixed(2));
+            if (window.PayPalSDK && window.PayPalSDK.Messages) {
+                window.PayPalSDK.Messages().render('#paypal-banner');
+            }
+        }
         validateForm();
     }
-    function validateForm() { //
-        const fields = ['vorname', 'nachname', 'strasse', 'plz', 'stadt'];
+
+    function togglePayment() {
+        const method = document.querySelector('input[name="payment"]:checked').value;
+        document.getElementById('paypal-section').style.display = (method === 'paypal') ? 'block' : 'none';
+        document.getElementById('whatsapp-section').style.display = (method === 'whatsapp') ? 'block' : 'none';
+    }
+
+    function sendWhatsApp() {
+        const nummer = "491718241679";
+        const v = document.getElementById('vorname').value;
+        const n = document.getElementById('nachname').value;
+        const e = document.getElementById('email').value;
+        const s = document.getElementById('strasse').value;
+        const p = document.getElementById('plz').value;
+        const st = document.getElementById('stadt').value;
+        const total = document.getElementById('total').innerText;
+
+        if(!v || !n || !e || !s) { alert("Bitte füllen Sie die Pflichtfelder (*) aus."); return; }
+
+        let liste = "";
+        cart.forEach(item => { liste += `- ${item.qty}x ${item.name} (${(item.price*item.qty).toFixed(2)}€)\n`; });
+
+        const text = `Hallo Seewald Tools,\n\nIch bestelle:\n${liste}\nGesamt: ${total}€\n\nAdresse:\n${v} ${n}\n${s}\n${p} ${st}\nE-Mail: ${e}`;
+        window.open(`https://wa.me/${nummer}?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    function validateForm() {
+        const fields = ['vorname', 'nachname', 'strasse', 'plz', 'stadt', 'email'];
         const allFilled = fields.every(id => {
             const el = document.getElementById(id);
             return el && el.value.trim() !== '';
@@ -270,8 +477,28 @@
     }
 </script>
 </body>
-
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
