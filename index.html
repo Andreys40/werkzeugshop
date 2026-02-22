@@ -490,6 +490,17 @@
         renderCart();
     }
 
+    // NEU: Funktion zum Ändern der Menge direkt im Warenkorb
+    function updateQty(index, newQty) {
+        let qty = parseInt(newQty);
+        if (isNaN(qty) || qty < 1) {
+            removeFromCart(index);
+        } else {
+            cart[index].qty = qty;
+            renderCart();
+        }
+    }
+
     function removeFromCart(index) { cart.splice(index, 1); renderCart(); }
 
     function renderCart() {
@@ -500,7 +511,19 @@
         cart.forEach((item, i) => {
             sub += item.price * item.qty;
             names.push(`${item.qty}x ${item.name}`);
-            c.innerHTML += `<div class="cart-item"><span>${item.qty}x ${item.name}</span><span>${(item.price*item.qty).toFixed(2)}€ <button class="remove-btn" onclick="removeFromCart(${i})">×</button></span></div>`;
+            // Geändert: Input-Feld statt reinem Text
+            c.innerHTML += `
+                <div class="cart-item" style="display: flex; align-items: center; gap: 8px;">
+                    <input type="number" 
+                           value="${item.qty}" 
+                           min="0" 
+                           onchange="updateQty(${i}, this.value)" 
+                           style="width: 40px; padding: 2px; text-align: center; border: 1px solid #ccc; border-radius: 3px;">
+                    <span style="flex: 1;">${item.name}</span>
+                    <span style="white-space: nowrap;">${(item.price*item.qty).toFixed(2).replace('.',',')}€ 
+                        <button class="remove-btn" onclick="removeFromCart(${i})">×</button>
+                    </span>
+                </div>`;
         });
 
         const ship = (sub >= 150 || sub === 0) ? 0 : 2.99;
@@ -559,6 +582,7 @@
 </script>
 </body>
 </html>
+
 
 
 
